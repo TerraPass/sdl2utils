@@ -1,0 +1,4 @@
+If non-trivial implementation for functions in this library becomes needed, consider creating an "optional static" library,
+i.e. create a front-end header file, which would include both .h and .cpp, as an option for users to utilize this as a header-only library.
+See:    http://stackoverflow.com/a/6164836/1051764
+        http://stackoverflow.com/a/2225444/1051764
