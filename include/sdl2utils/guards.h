@@ -94,19 +94,6 @@ namespace sdl2utils
 #define Z(SDL_CALL)     sdl2utils::guards::abbr::z(SDL_CALL, SDL2UTILS_ABBR_DETAIL_PREFIX(non-zero) #SDL_CALL)
 #define NZ(SDL_CALL)    sdl2utils::guards::abbr::nz(SDL_CALL, SDL2UTILS_ABBR_DETAIL_PREFIX(zero) #SDL_CALL)
 
-#else
-
-// Defining Z and NZ as no-op to prevent code from disappearing
-// when SDL2UTILS_ENABLE_ABBR_GUARD_MACROS is not defined.
-
-#ifndef Z
-#define Z(SDL_CALL) SDL_CALL
-#endif
-
-#ifndef NZ
-#define NZ(SDL_CALL) SDL_CALL
-#endif
-
 #endif
 
     }
