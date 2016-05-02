@@ -9,6 +9,8 @@ namespace sdl2utils
 {
     using namespace guards::abbr;
 
+    static constexpr const auto WAIT_EVENT_ERROR_DETAIL = "error occurred in SDL_WaitEvent()";
+    
     static inline bool isEscOrCrossPressedEvent(const SDL_Event& event)
     {
         return event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE);
@@ -23,13 +25,24 @@ namespace sdl2utils
 
     void waitEscOrCrossPressed()
     {
-        static constexpr const auto ERROR_DETAIL = "error occurred in SDL_WaitEvent()";
-
         SDL_Event event;
         do
         {
-            nz(SDL_WaitEvent(&event), ERROR_DETAIL);
+            nz(SDL_WaitEvent(&event), WAIT_EVENT_ERROR_DETAIL);
         }
         while(!isEscOrCrossPressedEvent(event));
+    }
+
+    const SDL_Event waitKeyPressed(bool waitRelease)
+    {
+        SDL_Event event;
+        do
+        {
+            nz(SDL_WaitEvent(&event), WAIT_EVENT_ERROR_DETAIL);
+        }
+        while(
+            event.type != (waitRelease ? SDL_KEYUP : SDL_KEYDOWN)
+        );
+        return std::move(event);
     }
 }
