@@ -21,6 +21,11 @@ namespace sdl2utils
         {
             SDL_DestroyTexture(ptexture);
         }
+        
+        inline void operator()(SDL_Surface* psurface) const
+        {
+            SDL_FreeSurface(psurface);
+        }
     };
 }
 
