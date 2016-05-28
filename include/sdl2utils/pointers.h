@@ -13,6 +13,7 @@ namespace sdl2utils
     using SDL_WindowPtr     = unique_ptr<SDL_Window, SDL2PtrDeleter>;
     using SDL_RendererPtr   = unique_ptr<SDL_Renderer, SDL2PtrDeleter>;
     using SDL_TexturePtr    = unique_ptr<SDL_Texture, SDL2PtrDeleter>;
+    using SDL_SurfacePtr    = unique_ptr<SDL_Surface, SDL2PtrDeleter>;
 }
 
 #endif /* SDL2UTILS_POINTERS_H */
