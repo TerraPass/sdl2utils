@@ -4,6 +4,7 @@
 
 #include <boost/format.hpp>
 #include <SDL2/SDL_error.h>
+#include <SDL2/SDL_image.h>
 
 namespace sdl2utils
 {
@@ -37,6 +38,35 @@ namespace sdl2utils
     {
         if(clearError)
         {
+            SDL_ClearError();
+        }
+    }
+
+    SDLExtensionLibraryException::SDLExtensionLibraryException(const string& extensionLibraryName, const string& details)
+        : SDL2Exception(
+            boost::str(
+                boost::format(MESSAGE_TEMPLATE)
+                    % extensionLibraryName
+                    % details
+            )
+        ), extensionLibraryName(extensionLibraryName), details(details)
+    {
+        
+    }
+    
+    SDLImageExtException::SDLImageExtException(bool clearError, const string& details)
+        : SDLExtensionLibraryException(
+            EXTENSION_LIBRARY_NAME,
+            boost::str(
+                boost::format(PARENT_DETAILS_FORMAT)
+                    % IMG_GetError()
+                    % details
+            )
+        )
+    {
+        if(clearError)
+        {
+            // TODO: See if using SDL_ClearError() to clear SDL_image errors is acceptable.
             SDL_ClearError();
         }
     }

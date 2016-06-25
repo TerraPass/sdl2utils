@@ -38,7 +38,7 @@ namespace sdl2utils
          * Uses SDL_GetError() to initialize exception message, 
          * then invokes SDL_ClearError() if passed true as the 2nd parameter.
          * 
-         * @param clearError If true, invokes clears SDL error after initializing exception.
+         * @param clearError If true, clears SDL error after initializing exception.
          * Defaults to true.
          * @param details Details as to what operation may have caused the error.
          */
@@ -64,6 +64,57 @@ namespace sdl2utils
         {
             return this->details;
         }
+    };
+
+    class SDLInitFailedException : public SDLErrorException
+    {
+        using SDLErrorException::SDLErrorException;
+    };
+
+    class SDLExtensionLibraryException : public SDL2Exception
+    {
+    protected:
+        constexpr static const auto DEFAULT_DETAILS     = "No details available";
+
+    private:
+        constexpr static const auto MESSAGE_TEMPLATE    = "Error in SDL extension library %1%: %2%";
+
+        const string extensionLibraryName;
+        const string details;
+
+    public:
+        explicit SDLExtensionLibraryException(const string& extensionLibraryName, const string& details = DEFAULT_DETAILS);
+
+        virtual ~SDLExtensionLibraryException() = default;
+
+        inline const string& getExtensionLibraryName()
+        {
+            return this->extensionLibraryName;
+        }
+        
+        inline const string& getDetails() const
+        {
+            return this->details;
+        }
+    };
+    
+    class SDLImageExtException : public SDLExtensionLibraryException
+    {
+    private:
+        static constexpr const auto EXTENSION_LIBRARY_NAME = "SDL_image";
+
+        static constexpr const auto PARENT_DETAILS_FORMAT = "%1% (%2%)";
+
+    public:
+        /**
+         * Uses IMG_GetError() to initialize exception message, 
+         * then invokes IMG_ClearError() if passed true as the 2nd parameter.
+         * 
+         * @param clearError If true, clears SDL_image error after initializing exception.
+         * Defaults to true.
+         * @param details Details as to what operation may have caused the error.
+         */
+        explicit SDLImageExtException(bool clearError = true, const string& details = DEFAULT_DETAILS);
     };
 }
 
