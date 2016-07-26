@@ -1,5 +1,5 @@
-#ifndef EXCEPTIONS_H
-#define EXCEPTIONS_H
+#ifndef SDL2UTILS_EXCEPTIONS_H
+#define SDL2UTILS_EXCEPTIONS_H
 
 #include <stdexcept>
 #include <string>
@@ -118,5 +118,5 @@ namespace sdl2utils
     };
 }
 
-#endif /* EXCEPTIONS_H */
+#endif /* SDL2UTILS_EXCEPTIONS_H */
 
