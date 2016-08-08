@@ -1,5 +1,5 @@
-#ifndef SCOPEDSDLIMAGEEXT_H
-#define SCOPEDSDLIMAGEEXT_H
+#ifndef SDL2UTILS_SCOPEDSDLIMAGEEXT_H
+#define SDL2UTILS_SCOPEDSDLIMAGEEXT_H
 
 #include "../exceptions.h"
 
@@ -20,7 +20,8 @@ namespace sdl2utils
                 if(mandatoryFlags != 0 && IMG_Init(mandatoryFlags) != mandatoryFlags)
                 {
                     IMG_Quit();
-                    throw SDLImageExtException(true, "ScopedSDLImageExt failed to init SDL_image with mandatory flags");
+                    //throw SDLImageExtException(true, "ScopedSDLImageExt failed to init SDL_image with mandatory flags");
+                    throw SDLErrorException(true, "IMG_Init() with specified mandatory flags in ScopedSDLImageExt ctor has failed");
                 }
                 else
                 {
@@ -69,5 +70,5 @@ namespace sdl2utils
     }
 }
 
-#endif /* SCOPEDSDLIMAGEEXT_H */
+#endif /* SDL2UTILS_SCOPEDSDLIMAGEEXT_H */
 

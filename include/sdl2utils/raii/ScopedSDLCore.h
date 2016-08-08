@@ -27,7 +27,8 @@ namespace sdl2utils
             {
                 if(SDL_Init(initFlags) < 0)
                 {
-                    throw SDLInitFailedException();
+                    //throw SDLInitFailedException();
+                    throw SDLErrorException(true, "SDL_Init() in ScopedSDLCore ctor has failed");
                 }
             }
             
