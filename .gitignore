@@ -39,3 +39,6 @@ Makefile
 # Editor-generated temporary files
 *.*~
 
+# Visual Studio Code folder
+.vscode/
+
