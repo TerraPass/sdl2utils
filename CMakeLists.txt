@@ -4,6 +4,34 @@ project(sdl2utils VERSION 0.1.0)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
+# Source & header files
+set(CPP_FILES_ROOT "${CMAKE_SOURCE_DIR}/src/sdl2utils")
+set(
+    CPP_FILES
+    
+    "${CPP_FILES_ROOT}/color_utils.cpp"
+    "${CPP_FILES_ROOT}/event_utils.cpp"
+    "${CPP_FILES_ROOT}/exceptions.cpp"
+)
+set(H_FILES_ROOT "${CMAKE_SOURCE_DIR}/include/sdl2utils")
+set(
+    H_FILES
+    
+    "${H_FILES_ROOT}/color_utils.h"
+    "${H_FILES_ROOT}/deleters.h"
+    "${H_FILES_ROOT}/event_utils.h"
+    "${H_FILES_ROOT}/exceptions.h"
+    "${H_FILES_ROOT}/guards.h"
+    "${H_FILES_ROOT}/pointers.h"
+    "${H_FILES_ROOT}/raii.h"
+
+    "${H_FILES_ROOT}/raii/ScopedRenderDrawColor.h"
+    "${H_FILES_ROOT}/raii/ScopedRenderTarget.h"
+    "${H_FILES_ROOT}/raii/ScopedSDLCore.h"
+    "${H_FILES_ROOT}/raii/ScopedSDLImageExt.h"
+    "${H_FILES_ROOT}/raii/ScopedSDLTtfExt.h"
+)
+
 #include(CMakeToolsHelperWorkaround)
 
 # SDL2
@@ -21,8 +49,9 @@ include_directories(
 
 add_library(
     sdl2utils
-    "${CMAKE_SOURCE_DIR}/src/sdl2utils/color_utils.cpp"
-    "${CMAKE_SOURCE_DIR}/src/sdl2utils/event_utils.cpp"
-    "${CMAKE_SOURCE_DIR}/src/sdl2utils/exceptions.cpp"
+    ${CPP_FILES}
 )
 target_include_directories(sdl2utils PUBLIC "${CMAKE_SOURCE_DIR}/include")
+
+install(TARGETS sdl2utils DESTINATION lib)
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/sdl2utils" DESTINATION include)
