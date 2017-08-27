@@ -1,7 +1,7 @@
 #include "../../include/sdl2utils/event_utils.h"
 
-#include <SDL2/SDL.h>
-#include <SDL/SDL_events.h>
+#include <SDL.h>
+#include <SDL_events.h>
 
 #include "../../include/sdl2utils/guards.h"
 

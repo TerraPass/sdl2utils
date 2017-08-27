@@ -1,7 +1,7 @@
 #ifndef SDL2UTILS_DELETERS_H
 #define SDL2UTILS_DELETERS_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 namespace sdl2utils
 {

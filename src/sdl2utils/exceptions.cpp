@@ -3,8 +3,8 @@
 #include <cassert>
 
 #include <boost/format.hpp>
-#include <SDL2/SDL_error.h>
-#include <SDL2/SDL_image.h>
+#include <SDL_error.h>
+#include <SDL_image.h>
 
 namespace sdl2utils
 {

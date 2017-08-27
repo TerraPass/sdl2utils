@@ -1,7 +1,7 @@
 #ifndef SCOPEDRENDERTARGET_H
 #define SCOPEDRENDERTARGET_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "../guards.h"
 

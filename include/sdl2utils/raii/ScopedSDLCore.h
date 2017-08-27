@@ -1,7 +1,7 @@
 #ifndef SDL2UTILS_SCOPEDINIT_H
 #define SDL2UTILS_SCOPEDINIT_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "../exceptions.h"
 

@@ -1,7 +1,7 @@
 #ifndef SDL2UTILS_EVENT_UTILS_H
 #define SDL2UTILS_EVENT_UTILS_H
 
-#include <SDL2/SDL_events.h>
+#include <SDL_events.h>
 
 namespace sdl2utils
 {

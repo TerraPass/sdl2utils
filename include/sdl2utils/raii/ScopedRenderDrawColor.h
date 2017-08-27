@@ -1,7 +1,7 @@
 #ifndef SCOPEDRENDERCOLOR_H
 #define SCOPEDRENDERCOLOR_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "../guards.h"
 

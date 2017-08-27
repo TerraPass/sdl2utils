@@ -1,7 +1,7 @@
 #ifndef SDL2UTILS_SCOPEDSDLTTFEXT_H
 #define SDL2UTILS_SCOPEDSDLTTFEXT_H
 
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
 
 #include "../exceptions.h"
 
