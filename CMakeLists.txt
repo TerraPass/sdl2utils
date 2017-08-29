@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 2.6)
 cmake_policy(SET CMP0048 NEW)
 project(sdl2utils VERSION 0.1.0)
 
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Source & header files
-set(CPP_FILES_ROOT "${CMAKE_SOURCE_DIR}/src/sdl2utils")
+set(CPP_FILES_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/src/sdl2utils")
 set(
     CPP_FILES
     
@@ -13,7 +13,7 @@ set(
     "${CPP_FILES_ROOT}/event_utils.cpp"
     "${CPP_FILES_ROOT}/exceptions.cpp"
 )
-set(H_FILES_ROOT "${CMAKE_SOURCE_DIR}/include/sdl2utils")
+set(H_FILES_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2utils")
 set(
     H_FILES
     
@@ -51,7 +51,7 @@ add_library(
     sdl2utils
     ${CPP_FILES}
 )
-target_include_directories(sdl2utils PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(sdl2utils PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 install(TARGETS sdl2utils DESTINATION lib)
-install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/sdl2utils" DESTINATION include)
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/sdl2utils" DESTINATION include)
