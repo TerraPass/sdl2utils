@@ -1,6 +1,8 @@
 #ifndef SDL2UTILS_SCOPEDSDLIMAGEEXT_H
 #define SDL2UTILS_SCOPEDSDLIMAGEEXT_H
 
+#include <SDL_image.h>
+
 #include "../exceptions.h"
 
 namespace sdl2utils
