@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 2.6)
 cmake_policy(SET CMP0048 NEW)
 project(sdl2utils VERSION 0.1.0)
 
+# Require C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Source & header files
