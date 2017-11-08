@@ -37,7 +37,7 @@ namespace sdl2utils
             
             // Move constructor
             inline ScopedSDLImageExt(ScopedSDLImageExt&& other)
-                : isOwner(true)
+                : isOwner(true), initFlags(other.initFlags)
             {
                 other.isOwner = false;
             }
@@ -47,6 +47,7 @@ namespace sdl2utils
             {
                 this->isOwner = true;
                 other.isOwner = false;
+                this->initFlags = other.initFlags;
                 return (*this);
             }
                 
