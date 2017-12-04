@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 namespace sdl2utils
 {
@@ -34,6 +35,19 @@ namespace sdl2utils
         inline void operator()(TTF_Font* pfont) const
         {
             TTF_CloseFont(pfont);
+        }
+    };
+
+    struct MixPtrDeleter
+    {
+        inline void operator()(Mix_Chunk* pchunk) const
+        {
+            Mix_FreeChunk(pchunk);
+        }
+
+        inline void operator()(Mix_Music* pmusic) const
+        {
+            Mix_FreeMusic(pmusic);
         }
     };
 }

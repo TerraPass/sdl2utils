@@ -16,10 +16,21 @@ namespace sdl2utils
             int initFlags;
 
         public:
-            explicit inline ScopedSDLMixerExt(const int mandatoryFlags)
-                : isOwner(true), initFlags(0)
+            explicit inline ScopedSDLMixerExt(
+                const int frequency,
+                const Uint16 format,
+                const int channels,
+                const int chunksize,
+                const int mandatoryInitFlags
+            )
+            : isOwner(true), initFlags(0)
             {
-                if(mandatoryFlags != 0 && Mix_Init(mandatoryFlags) != mandatoryFlags)
+                if(Mix_OpenAudio(frequency, format, channels, chunksize) < 0)
+                {
+                    throw SDLErrorException(true, "Mix_OpenAudio() in ScopedSDLMixerExt ctor has failed");
+                }
+
+                if(mandatoryInitFlags != 0 && Mix_Init(mandatoryInitFlags) != mandatoryInitFlags)
                 {
                     IMG_Quit();
                     //throw SDLImageExtException(true, "ScopedSDLImageExt failed to init SDL_image with mandatory flags");
@@ -27,7 +38,7 @@ namespace sdl2utils
                 }
                 else
                 {
-                    this->initFlags = mandatoryFlags;
+                    this->initFlags = mandatoryInitFlags;
                 }
             }
 
@@ -56,6 +67,7 @@ namespace sdl2utils
                 if(this->isOwner)
                 {
                     Mix_Quit();
+                    Mix_CloseAudio();
                 }
             }
         };

@@ -6,7 +6,7 @@
 #include "deleters.h"
 
 namespace sdl2utils
-{    
+{
     using std::unique_ptr;
     using std::shared_ptr;
     
@@ -16,6 +16,9 @@ namespace sdl2utils
     using SDL_SurfacePtr    = unique_ptr<SDL_Surface, SDL2PtrDeleter>;
     
     using TTF_FontPtr       = unique_ptr<TTF_Font, TTFPtrDeleter>;
+
+    using Mix_ChunkPtr      = unique_ptr<Mix_Chunk, MixPtrDeleter>;
+    using Mix_MusicPtr      = unique_ptr<Mix_Music, MixPtrDeleter>;
 }
 
 #endif /* SDL2UTILS_POINTERS_H */
