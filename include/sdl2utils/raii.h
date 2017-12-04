@@ -1,11 +1,12 @@
-#ifndef RAII_H
-#define RAII_H
+#ifndef SDL2UTILS_RAII_H
+#define SDL2UTILS_RAII_H
 
 #include "raii/ScopedRenderDrawColor.h"
 #include "raii/ScopedRenderTarget.h"
 #include "raii/ScopedSDLCore.h"
 #include "raii/ScopedSDLImageExt.h"
 #include "raii/ScopedSDLTtfExt.h"
+#include "raii/ScopedSDLMixerExt.h"
 
-#endif /* RAII_H */
+#endif /* SDL2UTILS_RAII_H */
 
