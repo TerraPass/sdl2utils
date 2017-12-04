@@ -30,16 +30,16 @@ namespace sdl2utils
                     throw SDLErrorException(true, "Mix_OpenAudio() in ScopedSDLMixerExt ctor has failed");
                 }
 
-                if(mandatoryInitFlags != 0 && Mix_Init(mandatoryInitFlags) != mandatoryInitFlags)
-                {
-                    IMG_Quit();
-                    //throw SDLImageExtException(true, "ScopedSDLImageExt failed to init SDL_image with mandatory flags");
-                    throw SDLErrorException(true, "Mix_Init() with specified mandatory flags in ScopedSDLMixerExt ctor has failed");
-                }
-                else
-                {
-                    this->initFlags = mandatoryInitFlags;
-                }
+                // if(mandatoryInitFlags != 0 && Mix_Init(mandatoryInitFlags) != mandatoryInitFlags)
+                // {
+                    // IMG_Quit();
+                    // //throw SDLImageExtException(true, "ScopedSDLImageExt failed to init SDL_image with mandatory flags");
+                    // throw SDLErrorException(true, "Mix_Init() with specified mandatory flags in ScopedSDLMixerExt ctor has failed");
+                // }
+                // else
+                // {
+                    // this->initFlags = mandatoryInitFlags;
+                // }
             }
 
             // Copy constructor and assignment are deleted
@@ -66,7 +66,7 @@ namespace sdl2utils
             {
                 if(this->isOwner)
                 {
-                    Mix_Quit();
+                    //Mix_Quit();
                     Mix_CloseAudio();
                 }
             }
