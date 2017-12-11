@@ -52,6 +52,16 @@ namespace sdl2utils
             {
                 return value != 0;
             }
+
+            template <typename Exception, typename T>
+            inline T throwSDLExceptionIfNull(T value, const std::string& valueName)
+            {
+                if(value == nullptr)
+                {
+                    throw Exception(true, valueName + " was null");
+                }
+                return value;
+            }
         }
 
         template<SuccessCondition Cond>
@@ -61,6 +71,12 @@ namespace sdl2utils
             {
                 throw SDLErrorException(true, errorDetailMessage);
             }
+        }
+
+        template <typename Exception = sdl2utils::SDLErrorException, typename Ptr>
+        inline Ptr ensureNotNull(Ptr ptr, const string& ptrName)
+        {
+            return detail::throwSDLExceptionIfNull<Exception>(ptr, ptrName);
         }
 
         namespace abbr
