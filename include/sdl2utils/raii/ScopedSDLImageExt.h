@@ -59,12 +59,12 @@ namespace sdl2utils
                 }
             }
             
-            inline int getInitializedImageFormatFlags() const
+            inline int getInitFlags() const
             {
                 return this->initFlags;
             }
 
-            inline int tryInitializeImageFormats(const int flags)
+            inline int tryInit(const int flags)
             {
                 this->initFlags = IMG_Init(flags);
                 return this->initFlags;

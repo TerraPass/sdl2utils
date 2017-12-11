@@ -25,21 +25,20 @@ namespace sdl2utils
             )
             : isOwner(true), initFlags(0)
             {
+                if(mandatoryInitFlags != 0 && Mix_Init(mandatoryInitFlags) != mandatoryInitFlags)
+                {
+                    Mix_Quit();
+                    throw SDLErrorException(true, "Mix_Init() with specified mandatory flags in ScopedSDLMixerExt ctor has failed");
+                }
+                else
+                {
+                    this->initFlags = mandatoryInitFlags;
+                }
+
                 if(Mix_OpenAudio(frequency, format, channels, chunksize) < 0)
                 {
                     throw SDLErrorException(true, "Mix_OpenAudio() in ScopedSDLMixerExt ctor has failed");
                 }
-
-                // if(mandatoryInitFlags != 0 && Mix_Init(mandatoryInitFlags) != mandatoryInitFlags)
-                // {
-                    // IMG_Quit();
-                    // //throw SDLImageExtException(true, "ScopedSDLImageExt failed to init SDL_image with mandatory flags");
-                    // throw SDLErrorException(true, "Mix_Init() with specified mandatory flags in ScopedSDLMixerExt ctor has failed");
-                // }
-                // else
-                // {
-                    // this->initFlags = mandatoryInitFlags;
-                // }
             }
 
             // Copy constructor and assignment are deleted
@@ -66,9 +65,20 @@ namespace sdl2utils
             {
                 if(this->isOwner)
                 {
-                    //Mix_Quit();
                     Mix_CloseAudio();
+                    Mix_Quit();
                 }
+            }
+
+            inline int getInitFlags() const
+            {
+                return this->initFlags;
+            }
+
+            inline int tryInit(const int flags)
+            {
+                this->initFlags = IMG_Init(flags);
+                return this->initFlags;
             }
         };
     }
