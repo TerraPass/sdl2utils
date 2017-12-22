@@ -1,6 +1,8 @@
 #ifndef SDL2UTILS_RAII_H
 #define SDL2UTILS_RAII_H
 
+#include "raii/ScopedAlphaMod.h"
+#include "raii/ScopedColorMod.h"
 #include "raii/ScopedRenderDrawColor.h"
 #include "raii/ScopedRenderTarget.h"
 #include "raii/ScopedSDLCore.h"
