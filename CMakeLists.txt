@@ -9,6 +9,14 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+# Configure warnings on GCC and Clang
+include(EnableCXXCompilerFlagIfSupported)
+if(NOT MSVC)    # Don't pass /Wall to MSVC, as it would throw a fit and produce a ton of silly warnings in system headers
+    enable_cxx_compiler_flag_if_supported("-Wall")
+    enable_cxx_compiler_flag_if_supported("-Wextra")
+    enable_cxx_compiler_flag_if_supported("-pedantic")
+endif(NOT MSVC)
+
 # Source & header files
 set(CPP_FILES_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/src/sdl2utils")
 set(
@@ -36,8 +44,6 @@ set(
     "${H_FILES_ROOT}/raii/ScopedSDLImageExt.h"
     "${H_FILES_ROOT}/raii/ScopedSDLTtfExt.h"
 )
-
-#include(CMakeToolsHelperWorkaround)
 
 # SDL2
 set(SDL2_BUILDING_LIBRARY true)
