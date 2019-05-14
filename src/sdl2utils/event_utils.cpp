@@ -19,8 +19,13 @@ namespace sdl2utils
     bool escOrCrossPressed()
     {
         SDL_Event event;
-        SDL_PollEvent(&event);
-        return isEscOrCrossPressedEvent(event);
+        while (SDL_PollEvent(&event) != SDL_FALSE)
+        {
+            if (isEscOrCrossPressedEvent(event))
+                return true;
+        }
+
+        return false;
     }
 
     void waitEscOrCrossPressed()
