@@ -48,6 +48,6 @@ namespace sdl2utils
         while(
             event.type != (waitRelease ? SDL_KEYUP : SDL_KEYDOWN)
         );
-        return std::move(event);
+        return event;
     }
 }
